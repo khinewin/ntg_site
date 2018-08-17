@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 11, 2018 at 12:35 PM
+-- Generation Time: Aug 17, 2018 at 04:21 AM
 -- Server version: 5.7.23-0ubuntu0.18.04.1
 -- PHP Version: 7.2.7-0ubuntu0.18.04.2
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `laravelDash`
+-- Database: `ntg`
 --
 
 -- --------------------------------------------------------
@@ -39,7 +39,8 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2018_07_19_122538_create_permission_tables', 1);
+(3, '2018_07_19_122538_create_permission_tables', 1),
+(4, '2018_08_16_084509_create_posts_table', 2);
 
 -- --------------------------------------------------------
 
@@ -70,7 +71,8 @@ CREATE TABLE `model_has_roles` (
 --
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
-(1, 'App\\User', 2);
+(1, 'App\\User', 2),
+(2, 'App\\User', 3);
 
 -- --------------------------------------------------------
 
@@ -101,6 +103,29 @@ CREATE TABLE `permissions` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `created_at`, `updated_at`, `title`, `slug`, `content`, `user_id`) VALUES
+(8, '2018-08-17 03:18:46', '2018-08-17 03:21:52', 'Web Development Foundation Batch-5', 'Web Development Foundation Batch-5', '<p>Location: Mawlamyine</p>\r\n<p>Date : 1-10-2018</p>\r\n<p>Fees : 150000 MMK</p>\r\n<p>Web Development အကိုအေျခခံမွ စၿပီး သင္ၾကားေပးေသာေၾကာင့္၊ Web Developer ျဖစ္အသက္ေမြး၀မ္းေက်ာင္း ျပဳလုပ္ ရန္ရည္ရြယ္ခ်က္ရွိေသာ ေက်ာင္းသား၊ေက်ာင္းသူမ်ား၊ Web Development ကိုစတင္ေလ့လာေနေသာ ေက်ာင္းသား၊ ေက်ာင္းသူမ်ား အတြက္ သင့္ေတာ္ ေသာ Class ျဖစ္ပါတယ္။</p>\r\n<p>ပါ၀င္ေသာ သင္ခန္းစာမ်ား</p>\r\n<p>HTML5</p>\r\n<p>CSS3</p>\r\n<p>Javascript</p>\r\n<p>jQuery</p>\r\n<p>Bootstrap</p>\r\n<p>PHP</p>\r\n<p>Mysql</p>\r\n<p>Web Application Projects with PHP &amp; Mysql</p>\r\n<p>&nbsp;</p>', 2);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `roles`
 --
 
@@ -118,8 +143,7 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
 (1, 'Administrator', 'web', NULL, NULL),
-(2, 'Waiter', 'web', NULL, NULL),
-(3, 'Cashier', 'web\r\n', NULL, NULL);
+(2, 'Author', 'web', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -154,7 +178,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `full_name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 'admin', 'Administrator', 'admin@ntg.res', '$2y$10$f4MZATs3TfbVQzUUxAx/XOXpbfebR/SU/CdztOAaFcRfea7Gmknrq', 'onP1E8bijvvg7Hwx0DZqviDWSuTBp7AYmmLgLRlZN2dmZcR7LDTioBSGXttg', '2018-08-11 12:20:47', '2018-08-11 12:20:47');
+(2, 'admin', 'Administrator', 'admin@ntg.res', '$2y$10$f4MZATs3TfbVQzUUxAx/XOXpbfebR/SU/CdztOAaFcRfea7Gmknrq', 'kWQH7eU0bdDviXZiSIbrMx4GfqXvqyIO0SW4Btl7MYBib1tTVvbImJHTlPYl', '2018-08-11 12:20:47', '2018-08-11 12:20:47'),
+(3, 'khinewin', 'khinewin', 'khinewin123@gmail.com', '$2y$10$QGp29gcEf1BKqX8b67m3DexdlNZ0CAYH2LuvpjkvXLS1P79sDzZ36', 'ikNKRarZLzlYgFEXpx9m6GEV5MWiKdc8pM6GfV8PZvsrkei2Pc1F5pGyV3ni', '2018-08-16 03:57:28', '2018-08-16 03:57:28');
 
 --
 -- Indexes for dumped tables
@@ -193,6 +218,12 @@ ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -221,22 +252,27 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Constraints for dumped tables
 --
