@@ -2,6 +2,6 @@
     <div class="pull-right hidden-xs">
 
     </div>
-    <i>Copyright &copy; {{date('Y')}} </i><b>NTG RES-POS</b>. All rights
+    <i>Copyright &copy; {{date('Y')}} </i><b>NTG Technology</b>. All rights
     reserved.
 </footer>

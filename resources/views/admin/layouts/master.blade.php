@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>NTG RES-POS | @yield('title')</title>
+    <title>NTG >> @yield('title')</title>
 
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
@@ -20,6 +20,13 @@
 
     <!-- Data table-->
     <link rel="stylesheet" href="{{asset('datatable/app.css')}}">
+
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <style>
+        .mce-notification.mce-in {
+            display: none;
+        }
+    </style>
 
     <!-- Google Font -->
 
@@ -52,6 +59,8 @@
     <script src="{{asset('js/action.js')}}"></script>
 
 
+
+
     <script>
         $(function () {
            $(".tem").fadeOut(5000);
@@ -59,6 +68,12 @@
            $("#item_table").dataTable();
            $("#user_table").dataTable();
            $("#table_sale_item").dataTable();
+
+            tinymce.init({
+
+                selector: 'textarea',
+
+            });
         });
     </script>
 

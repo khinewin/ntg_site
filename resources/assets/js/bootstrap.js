@@ -2,6 +2,19 @@
 window._ = require('lodash');
 window.Popper = require('popper.js').default;
 
+import Vue from 'vue';
+import vueRouter from 'vue-router';
+import readMore from 'vue-read-more';
+import moment from 'moment';
+import backToTop from 'vue-backtotop';
+import socialShare from 'vue-social-sharing';
+
+Vue.use(vueRouter)
+Vue.use(readMore)
+Vue.use(moment)
+Vue.use(backToTop)
+Vue.use(socialShare)
+
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This

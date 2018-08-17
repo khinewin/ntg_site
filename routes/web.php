@@ -12,6 +12,11 @@
 */
 
 
+Route::get('/', [
+    'uses'=>'WelcomeController@getWelcome',
+    'as'=>'/'
+]);
+
 
 Route::get('/login',[
     'uses'=>'AuthController@getLogin',
@@ -26,8 +31,36 @@ Route::post('/login',[
 
 Route::group(['middleware'=>'auth'], function (){
 
-    Route::get('/', function (){
-        return redirect()->route('dashboard');
+
+    Route::group(['prefix'=>'posts'], function (){
+        Route::get('/new',[
+            'uses'=>'PostController@getNewPost',
+            'as'=>'post.new'
+        ]);
+        Route::post('/new',[
+            'uses'=>'PostController@postNewPost',
+            'as'=>'post.new'
+        ]);
+        Route::get('/show',[
+            'uses'=>'PostController@getPosts',
+            'as'=>'posts'
+        ]);
+        Route::get('/{user}/show',[
+            'uses'=>'PostController@getUserPosts',
+            'as'=>'user.posts'
+        ]);
+        Route::post('/delete/post',[
+            'uses'=>'PostController@deletePost',
+            'as'=>'post.delete'
+        ]);
+        Route::get('/edit/{slug}',[
+            'uses'=>'PostController@getEditPost',
+            'as'=>'edit.post'
+        ]);
+        Route::post('/update',[
+            'uses'=>'PostController@postUpdate',
+            'as'=>'post.update'
+        ]);
     });
 
 
@@ -56,38 +89,43 @@ Route::group(['middleware'=>'auth'], function (){
         ]);
     });
 
+});
+
+
 
 
 
     Route::group(['prefix'=>'admin', ], function (){
 
-        Route::get('/users',[
-            'uses'=>'AdminController@getUsers',
-            'as'=>'users'
-        ]);
-        Route::get('/user/new',[
-            'uses'=>'AdminController@getNewUser',
-            'as'=>'user.new'
-        ]);
-        Route::post('/user/new',[
-            'uses'=>'AdminController@postNewUser',
-            'as'=>'user.new'
-        ]);
-        Route::post('/user/delete',[
-            'uses'=>'AdminController@postDeleteUser',
-            'as'=>'user.delete'
-        ]);
+        Route::group(['middleware'=>'ntg.auth:Administrator'], function (){
 
-        Route::post('/user/update',[
-            'uses'=>'AdminController@postUpdateUser',
-            'as'=>'user.update'
-        ]);
+            Route::get('/users',[
+                'uses'=>'AdminController@getUsers',
+                'as'=>'users'
+            ]);
+            Route::get('/user/new',[
+                'uses'=>'AdminController@getNewUser',
+                'as'=>'user.new'
+            ]);
+            Route::post('/user/new',[
+                'uses'=>'AdminController@postNewUser',
+                'as'=>'user.new'
+            ]);
+            Route::post('/user/delete',[
+                'uses'=>'AdminController@postDeleteUser',
+                'as'=>'user.delete'
+            ]);
+
+            Route::post('/user/update',[
+                'uses'=>'AdminController@postUpdateUser',
+                'as'=>'user.update'
+            ]);
+
+        });
 
     });
 
 
-
-});
 
 
 

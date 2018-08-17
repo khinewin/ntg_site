@@ -16,3 +16,16 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/posts',[
+    'uses'=>'ApiController@getPosts',
+
+]);
+
+Route::get('/post/{slug}', [
+    'uses'=>'ApiController@getPost'
+]);
+
+Route::get('/search/{q}',[
+    'uses'=>'ApiController@getSearch'
+]);

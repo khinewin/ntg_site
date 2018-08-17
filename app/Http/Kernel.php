@@ -60,6 +60,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
         //admin middleware
-        'role' => \App\Http\Middleware\IsAdmin::class,
+        'ntg.auth' => \App\Http\Middleware\IsAdmin::class,
     ];
 }

@@ -35,13 +35,14 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-cog"></i>
-                    <span>Show Sub Menu</span>
+                    <span>Contents</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-product-hunt"></i> Sub Menu </a></li>
+                    <li><a href="{{route('posts')}}"><i class="fa fa-code-fork"></i> Posts </a></li>
+                    <li><a href="{{route('post.new')}}"><i class="fa fa-plus-circle"></i> New Post</a></li>
                 </ul>
             </li>
             @if(Auth::User()->hasRole('Administrator'))
